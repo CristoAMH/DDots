@@ -17,7 +17,7 @@ M.find_under_cursor = function()
 end
 
 vim.g.nvim_tree_bindings = {
-    ["<C-f>"] = ":lua require('config.nvim-tree').find_under_cursor()<cr>"
+    {key = {"<C-f>"}, cb = ":lua require('config.nvim-tree').find_under_cursor()<cr>"}
 }
 
 
