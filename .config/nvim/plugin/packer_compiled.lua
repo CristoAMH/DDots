@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -80,9 +77,24 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
+  ["git-messenger"] = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/git-messenger"
+  },
   ["gruvbox-material"] = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/gruvbox-material"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/kommentary"
+  },
+  ["neoscroll.nvim"] = {
+    config = { "require('config.scroll')" },
+    keys = { { "", "<C-u>" }, { "", "<C-d>" }, { "", "C-b" }, { "", "gg" }, { "", "G" } },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/neoscroll.nvim"
   },
   ["nlua.nvim"] = {
     loaded = true,
@@ -95,6 +107,10 @@ _G.packer_plugins = {
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -113,6 +129,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["startuptime.vim"] = {
+    commands = { "StartupTime" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/startuptime.vim"
+  },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -121,13 +147,19 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/ultisnips"
   },
-  ["vim-dispatch"] = {
-    loaded = true,
-    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/vim-dispatch"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
+  ["vim-matchup"] = {
+    after_files = { "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
+    loaded = false,
+    needs_bufread = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/vim-matchup"
+  },
+  ["vim-polyglot"] = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
   ["vim-snippets"] = {
     loaded = true,
@@ -136,13 +168,32 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+vim.cmd [[command! -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'startuptime.vim'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+time([[Defining lazy-load commands]], false)
+
+-- Keymap lazy-loads
+time([[Defining lazy-load keymaps]], true)
+vim.cmd [[noremap <silent> gg <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "gg", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> G <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "G", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <C-u> <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "<lt>C-u>", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> C-b <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "C-b", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <C-d> <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "<lt>C-d>", prefix = "" }, _G.packer_plugins)<cr>]]
+time([[Defining lazy-load keymaps]], false)
+
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-matchup'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: ".v:exception | echom "Please check your config for correctness" | echohl None')
+end
