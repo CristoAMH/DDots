@@ -4,4 +4,4 @@ vim.g.mapleader = ' '
 require('settings')
 require('keymappings')
 require('config')
-require('lang')
+require('lsp')

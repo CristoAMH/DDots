@@ -15,11 +15,41 @@ return require('packer').startup(function(use)
     
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt = true}
-  use {'nvim-treesitter/nvim-treesitter'}  
 
   -- Color scheme
   use { 'sainnhe/gruvbox-material' }
   use {'sheerun/vim-polyglot'}
+
+ -------------
+  -- Treesitter
+  -------------
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
+    use {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        requires = 'nvim-treesitter/nvim-treesitter',
+    }
+
+    use {
+        'windwp/nvim-ts-autotag',
+        requires = 'nvim-treesitter/nvim-treesitter',
+    }
+
+    use{
+      "andymass/vim-matchup",
+      event = "CursorMoved",
+    }
+
+  ---------------
+  -- Indent lines
+  ---------------
+    use {
+      'lukas-reineke/indent-blankline.nvim'
+    }
+
 
 
   -- Fuzzy finder
@@ -30,14 +60,27 @@ return require('packer').startup(function(use)
 
   -- LSP and completion
   use { 'neovim/nvim-lspconfig' }
+  use {"glepnir/lspsaga.nvim"}
+  use {"kabouzeid/nvim-lspinstall"}
   use { 'nvim-lua/completion-nvim' }
 
   -- Lua development
   use { 'tjdevries/nlua.nvim' }
 
   -- GIT
-  use { 'tpope/vim-fugitive' }
-  use { 'rhysd/git-messenger' }
+  use { 'rhysd/git-messenger.vim' }
+  use {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("config.gitsigns").config()
+        end,
+        event = "BufRead",
+      requires = { "nvim-lua/plenary.nvim" },
+    }
+    use {
+        "f-person/git-blame.nvim",
+        event = "BufRead",
+    }
 
   -- Snippets
   use { 'honza/vim-snippets' }
@@ -51,18 +94,14 @@ return require('packer').startup(function(use)
   use {'b3nj5m1n/kommentary'}
 
 -- Smooth Scrolling
-    use({
+    use{
       "karb94/neoscroll.nvim",
       keys = { "<C-u>", "<C-d>", "C-b", "gg", "G" },
       config = [[require('config.scroll')]]
-    })
+    }
 
-    use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+    use{ "tweekmonster/startuptime.vim", cmd = "StartupTime" }
 
-    use({
-      "andymass/vim-matchup",
-      event = "CursorMoved",
-    })
 
 end)
 

@@ -88,6 +88,13 @@ for _, lsp in ipairs(servers) do
     }
 end
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  }
+)
+
+ 
 -- Lua LSP. NOTE: This replaces the calls where you would have before done `require('nvim_lsp').sumneko_lua.setup()`
 require('nlua.lsp.nvim').setup(require('lspconfig'), {
     capabilities = capabilities;
