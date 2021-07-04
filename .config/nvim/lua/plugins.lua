@@ -4,25 +4,28 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+    execute 'packadd packer.nvim'
 end
 
 vim.cmd([[packadd packer.nvim]])
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function(use)
-    
-  -- Packer can manage itself as an optional plugin
-  use {'wbthomason/packer.nvim', opt = true}
 
-  -- Color scheme
-  use { 'sainnhe/gruvbox-material' }
-  use {'sheerun/vim-polyglot'}
+    -- Packer can manage itself as an optional plugin
+    use {'wbthomason/packer.nvim', opt = true}
 
- -------------
-  -- Treesitter
-  -------------
+    -------------
+    -- Color scheme
+    -------------
+    use { 'sainnhe/gruvbox-material' }
+    use {'kyazdani42/nvim-web-devicons'}
+    use {'sheerun/vim-polyglot'}
+
+    -------------
+    -- Treesitter
+    -------------
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -39,67 +42,85 @@ return require('packer').startup(function(use)
     }
 
     use{
-      "andymass/vim-matchup",
-      event = "CursorMoved",
+        "andymass/vim-matchup",
+        event = "CursorMoved",
     }
 
-  ---------------
-  -- Indent lines
-  ---------------
+    ---------------
+    -- Indent lines
+    ---------------
     use {
-      'lukas-reineke/indent-blankline.nvim'
+        'lukas-reineke/indent-blankline.nvim'
     }
 
 
+    ---------------
+    -- Fuzzy finder
+    ---------------
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim','nvim-telescope/telescope-fzy-native.nvim'}
+    }
 
-  -- Fuzzy finder
-  use {
-      'nvim-telescope/telescope.nvim',
-      requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim','nvim-telescope/telescope-fzy-native.nvim'}
-  }
+    ---------------
+    -- LSP and completion
+    ---------------
+    use { 'neovim/nvim-lspconfig' }
+    use {"glepnir/lspsaga.nvim"}
+    use {"kabouzeid/nvim-lspinstall"}
+    use { 'nvim-lua/completion-nvim' }
 
-  -- LSP and completion
-  use { 'neovim/nvim-lspconfig' }
-  use {"glepnir/lspsaga.nvim"}
-  use {"kabouzeid/nvim-lspinstall"}
-  use { 'nvim-lua/completion-nvim' }
+    ---------------
+    -- Lua development
+    ---------------
+    use { 'tjdevries/nlua.nvim' }
 
-  -- Lua development
-  use { 'tjdevries/nlua.nvim' }
-
-  -- GIT
-  use { 'rhysd/git-messenger.vim' }
-  use {
+    ---------------
+    -- GIT
+    ---------------
+    use { 'rhysd/git-messenger.vim' }
+    use {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("config.gitsigns").config()
         end,
         event = "BufRead",
-      requires = { "nvim-lua/plenary.nvim" },
+        requires = { "nvim-lua/plenary.nvim" },
     }
     use {
         "f-person/git-blame.nvim",
         event = "BufRead",
     }
 
-  -- Snippets
-  use { 'honza/vim-snippets' }
-  use { 'SirVer/ultisnips' }
+    ---------------
+    -- Snippets
+    ---------------
+    use { 'honza/vim-snippets' }
+    use { 'SirVer/ultisnips' }
 
-  use { 'glepnir/dashboard-nvim' }
+    ---------------
+    -- TREE
+    ---------------
+    use {'kyazdani42/nvim-tree.lua'}
 
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'kyazdani42/nvim-tree.lua'}
+    ---------------
+    -- Better comments
+    ---------------
+    use {'b3nj5m1n/kommentary'}
 
-  use {'b3nj5m1n/kommentary'}
-
--- Smooth Scrolling
+    ---------------
+    -- Smooth Scrolling
+    ---------------
     use{
-      "karb94/neoscroll.nvim",
-      keys = { "<C-u>", "<C-d>", "C-b", "gg", "G" },
-      config = [[require('config.scroll')]]
+        "karb94/neoscroll.nvim",
+        keys = { "<C-u>", "<C-d>", "C-b", "gg", "G" },
+        config = [[require('config.scroll')]]
     }
 
+    ---------------
+    -- Miscellaneous
+    ---------------
+    use { 'glepnir/dashboard-nvim' }
     use{ "tweekmonster/startuptime.vim", cmd = "StartupTime" }
 
 
