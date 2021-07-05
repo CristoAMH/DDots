@@ -90,7 +90,9 @@ return require('packer').startup(function(use)
     use {
         "f-person/git-blame.nvim",
         event = "BufRead",
+        config = function() vim.g.gitblame_enabled= 0 end
     }
+    use {'sindrets/diffview.nvim'}
 
     ---------------
     -- Snippets
