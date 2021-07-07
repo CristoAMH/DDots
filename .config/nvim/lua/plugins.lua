@@ -119,6 +119,11 @@ return require('packer').startup(function(use)
     }
 
     ---------------
+     -- Status Line and Bufferline
+    ---------------
+    use { "glepnir/galaxyline.nvim" }
+
+    ---------------
     -- Miscellaneous
     ---------------
     use { 'glepnir/dashboard-nvim' }
