@@ -87,11 +87,11 @@ return require('packer').startup(function(use)
         event = "BufRead",
         requires = { "nvim-lua/plenary.nvim" },
     }
-
     -- TODO: Discober why it's not working
     --[[ use {
         "f-person/git-blame.nvim"
     } ]]
+    use {'sindrets/diffview.nvim'}
 
     ---------------
     -- Snippets
