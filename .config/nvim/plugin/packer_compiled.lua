@@ -78,9 +78,8 @@ _G.packer_plugins = {
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
   ["git-blame.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/git-blame.nvim"
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/git-blame.nvim"
   },
   ["git-messenger.vim"] = {
     loaded = true,
@@ -91,10 +90,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
-  },
-  ["gruvbox-material"] = {
-    loaded = true,
-    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/gruvbox-material"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -174,6 +169,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+  },
   ultisnips = {
     loaded = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/ultisnips"
@@ -183,10 +182,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/opt/vim-matchup"
-  },
-  ["vim-polyglot"] = {
-    loaded = true,
-    path = "/Users/cristoamh/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
   ["vim-snippets"] = {
     loaded = true,
@@ -203,11 +198,11 @@ time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
 time([[Defining lazy-load keymaps]], true)
-vim.cmd [[noremap <silent> gg <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "gg", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> G <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "G", prefix = "" }, _G.packer_plugins)<cr>]]
-vim.cmd [[noremap <silent> <C-d> <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "<lt>C-d>", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> <C-u> <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "<lt>C-u>", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> <C-d> <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "<lt>C-d>", prefix = "" }, _G.packer_plugins)<cr>]]
 vim.cmd [[noremap <silent> C-b <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "C-b", prefix = "" }, _G.packer_plugins)<cr>]]
+vim.cmd [[noremap <silent> gg <cmd>lua require("packer.load")({'neoscroll.nvim'}, { keys = "gg", prefix = "" }, _G.packer_plugins)<cr>]]
 time([[Defining lazy-load keymaps]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
@@ -215,7 +210,7 @@ vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-matchup'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'git-blame.nvim', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

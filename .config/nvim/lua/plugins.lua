@@ -19,9 +19,9 @@ return require('packer').startup(function(use)
     -------------
     -- Color scheme
     -------------
-    use { 'sainnhe/gruvbox-material' }
+    -- use { 'sainnhe/gruvbox-material' }
+    use {'folke/tokyonight.nvim'}
     use {'kyazdani42/nvim-web-devicons'}
-    use {'sheerun/vim-polyglot'}
 
     -------------
     -- Treesitter
@@ -87,10 +87,11 @@ return require('packer').startup(function(use)
         event = "BufRead",
         requires = { "nvim-lua/plenary.nvim" },
     }
-    use {
-        "f-person/git-blame.nvim",
-        event = "BufRead",
-    }
+
+    -- TODO: Discober why it's not working
+    --[[ use {
+        "f-person/git-blame.nvim"
+    } ]]
 
     ---------------
     -- Snippets
