@@ -19,7 +19,7 @@ utils.map('n', '<Leader>cr', "<cmd>lua require'lspsaga.rename'.rename()<cr>", {s
 utils.map('n', '<Leader>cf', "<cmd>lua vim.lsp.buf.formatting()<cr>", {silent = true})
 utils.map('v', '<Leader>cf', "<cmd>'<.'>lua vim.lsp.buf.formatting()<cr>", {silent = true})
 utils.map('n', '<Leader>K', "<cmd>lua require'lspsaga.hover'.render_hover_dnoc()<cr>", {silent = true})
-utils.map('n', '<C-K>', "<cmd>lua require'lspsaga.signaturehelp'.signature_help()<cr>", {silent = true})
+utils.map('n', '<Leader>sk', "<cmd>lua require'lspsaga.signaturehelp'.signature_help()<cr>", {silent = true})
 utils.map('n', '[g', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<cr>", {silent = true})
 utils.map('n', ']g', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<cr>", {silent = true})
 utils.map('n', '<C-f>', "<cmd>lua require'lspsaga.action'.smart_scroll_with_saga(1)<cr>", {silent = true})

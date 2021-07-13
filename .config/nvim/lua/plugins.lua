@@ -67,7 +67,9 @@ return require('packer').startup(function(use)
     ---------------
     use { 'neovim/nvim-lspconfig' }
     use {"glepnir/lspsaga.nvim"}
-    use {"kabouzeid/nvim-lspinstall"}
+    use {'kabouzeid/nvim-lspinstall',
+    config = function() require('setup.nvim_lspinstall') end,
+  }
     use { 'nvim-lua/completion-nvim' }
 
     ---------------
