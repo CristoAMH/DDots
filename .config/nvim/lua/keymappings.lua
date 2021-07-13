@@ -5,6 +5,6 @@ utils.map('n', '<leader>q', '<cmd>q<CR>')           -- alternative way to scape
 utils.map('n', '<C-s>', '<cmd>w<CR>')           -- alternative way to scape
 
 -- Repurpose arrow keys for quickfix list movement
-utils.map('n', '<leader>k', ':cprevious<cr>', {silent = true})
-utils.map('n', '<leader>j', ':cnext<cr>', {silent = true})
+utils.map('n', '<C-k>', '<CMD>cprev<cr>', {silent = true})
+utils.map('n', '<C-j>', '<CMD>cnext<cr>', {silent = true})
 
